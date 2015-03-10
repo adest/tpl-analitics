@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<p>Click here to change data !</p>
+
+<script src="assets/D3.js/d3.js"></script>
+<script>
+
+    var dataset = [5, 10, 13, 21, 19];
+
+    var     w = 500,
+            h = 100;
+    var padding = 1;
+
+    var svg = d3.select('body')
+            .append('svg')
+            .attr({
+                height: h,
+                width: w
+            });
+
+    svg.selectAll('rect')
+            .data(dataset)
+            .enter()
+//            .transition()
+//            .duration(1000)
+            .append('rect')
+            .attr({
+                x: function(d, i) {
+                    return i * (w / dataset.length);
+                },
+                y: function(d) {
+                    return h - d * 4;
+                },
+                width: w / dataset.length - padding,
+                height: function(d) {return d * 4;},
+                fill: function(d) { return 'rgb(0, 0, ' + (d * 10) + ')';}
+            });
+
+    svg.selectAll('text')
+            .data(dataset)
+            .enter()
+//            .transition()
+//            .duration(1000)
+            .append('text')
+            .text(function(d) {return d;})
+            .attr('text-anchor', 'middle')
+            .attr('x', function(d, i) {return i * w / dataset.length + w / dataset.length / 2;})
+            .attr('y', function(d, i) {return h - d * 4 + 15;})
+            .attr('font-family', 'sans-sherif')
+            .attr('font-size', '11px')
+            .attr('fill', 'white');
+
+    d3.select('p')
+            .on('click', function(){
+                dataset = [19, 21, 13, 10, 5];
+
+                svg.selectAll('rect')
+                        .data(dataset)
+                        .transition()
+                        .duration(1000)
+                        .attr({
+                            x: function(d, i) {
+                                return i * (w / dataset.length);
+                            },
+                            y: function(d) {
+                                return h - d * 4;
+                            },
+                            width: w / dataset.length - padding,
+                            height: function(d) {return d * 4;},
+                            fill: function(d) { return 'rgb(0, 0, ' + (d * 10) + ')';}
+                        });
+
+                svg.selectAll('text')
+                        .data(dataset)
+                        .transition()
+                        .duration(1000)
+                        .text(function(d) {return d;})
+                        .attr('x', function(d, i) {return i * w / dataset.length + w / dataset.length / 2;})
+                        .attr('y', function(d, i) {return h - d * 4 + 15;});
+            });
+
+
+</script>
+</body>
+</html>
