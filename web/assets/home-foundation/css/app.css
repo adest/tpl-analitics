@@ -1,0 +1,33 @@
+.container.row {
+    max-width: 1080px;
+}
+
+.navigation.top-bar,
+.navigation.top-bar .top-bar-section ul li ,
+.navigation.top-bar .top-bar-section ul li a,
+.navigation.top-bar .top-bar-section ul li a:hover {
+    background: rgb(255, 255, 255);
+}
+
+.navigation.top-bar,
+.navigation.top-bar .top-bar-section ul li ,
+.navigation.top-bar .top-bar-section ul li a,
+.navigation.top-bar .top-bar-section ul li a:hover{
+    background: rgba(0, 0, 0, 0);
+}
+
+.navigation.top-bar {
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.main-title h1 {
+    position: relative;
+    top: -60px;
+}
+
+.hero .columns {
+    background-color: rgba(0, 0, 0, 0.45);
+    color: #ffffff;
+    position: relative;
+    top: -500px;
+}

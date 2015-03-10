@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="assets/foundation-5.5.0/css/normalize.css">
+    <link rel="stylesheet" href="assets/foundation-5.5.0/css/foundation.css">
+
+    <!-- This is how you would link your custom stylesheet -->
+    <link rel="stylesheet" href="assets/home-foundation/css/app.css">
+
+    <script src="assets/foundation-5.5.0/js/vendor/modernizr.js"></script>
+</head>
+<body>
+
+    <div class="fixed">
+        <div class="container row">
+            <div class="small-12 columns">
+                <!-- Nav bar -->
+                <nav class="navigation top-bar" data-topbar role="navigation">
+                    <ul class="title-area">
+                        <li class="name">
+                            <h1><a href="#">My Site</a></h1>
+                        </li>
+                        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+                    </ul>
+
+                    <section class="top-bar-section">
+                        <!-- Right Nav Section -->
+                        <ul class="right">
+                            <li ><a href="#">Right Button Active</a></li>
+                        </ul>
+
+                        <!-- Left Nav Section -->
+                        <ul class="left">
+                            <li><a href="#">Left Nav Button</a></li>
+                        </ul>
+                    </section>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container row">
+        <div class="small-12 columns svg-container">
+        </div>
+    </div>
+
+    <div class="container row hero">
+        <div class="small-3 small-offset-1 columns">
+            <p>Ceci est un petit paragraphe</p>
+        </div>
+    </div>
+
+    <div class="container row main-title">
+        <div class="small-12 columns">
+            <h1 class="text-center">Interface Benefits</h1>
+        </div>
+    </div>
+
+    <script src="assets/D3.js/d3.js"></script>
+    <script>
+
+        (function(){
+
+            var lineDataset = [30, 42, 35, 40, 32, 40];
+
+            var     w = 1050,
+                    h = 705;
+            var padding = 1;
+            var marginBottom = 150;
+            var duration = 500;
+
+            var xScale = d3.scale.linear()
+                    .domain([0, lineDataset.length - 1])
+                    .range([0, w]);
+            var yScale = d3.scale.linear()
+                    .domain([0, d3.max(lineDataset)])
+                    .range([Math.floor((h - marginBottom) / 2), h - marginBottom]);
+
+            var svg = d3.select('.svg-container')
+                    .append('svg')
+                    .attr({
+                        height: h,
+                        width: w
+                    });
+
+            svg.selectAll('image')
+                    .data([0])
+                    .enter()
+                    .append("svg:image")
+                    .attr("xlink:href", "assets/home-foundation/img/field-of-potatoes-1050.jpg")
+                    .attr("x", 0)
+                    .attr("y", "0")
+                    .attr("width", w)
+                    .attr("height", h);
+
+            svg.append("linearGradient")
+                    .attr("id", "line-gradient")
+                    .attr("gradientUnits", "objectBoundingBox")
+                    .attr("x1", 0).attr("y1", 0)
+                    .attr("x2", 0).attr("y2", 1)
+                    .selectAll("stop")
+                    .data([
+                        {offset: "0%", color: "rgba(255, 255, 255, 0.65)"},
+                        {offset: "90%", color: "rgba(255, 255, 255, 1)"},
+                        {offset: "100%", color: "rgba(255, 255, 255, 1)"}
+                    ])
+                    .enter().append("stop")
+                    .attr("offset", function(d) { return d.offset; })
+                    .attr("stop-color", function(d) { return d.color; });
+
+            var line = d3.svg.line()
+                    .x(function(d, i){ return xScale(i); })
+                    .y(function(d){ return yScale(d); })
+                    .interpolate("linear");
+
+            svg.append('path')
+                    .attr('fill', 'none')
+                    .attr('stroke', 'rgb(0, 0, 150)')
+                    .attr('stroke-width',  '3')
+                    .attr('stroke-antialiasing', 'true')
+                    .transition()
+                    .duration(duration)
+                        .attr('d', line(lineDataset));
+
+            svg.append('path')
+                    .attr('fill', 'url(#line-gradient)')
+                    .transition()
+                    .duration(duration)
+                        .attr('d', function() {
+                            var path = line(lineDataset);
+                            path += 'L' + w + ',' + h;
+                            path += 'L0,' + h + 'Z';
+                            return path;
+                        });
+
+            svg.selectAll('circle')
+                    .data(lineDataset)
+                    .enter()
+                    .append('circle')
+                    .attr('fill', 'white')
+                    .attr('stroke', 'rgb(0, 0, 150)')
+                    .attr('stroke-width', '2')
+                    .transition()
+                    .duration(duration)
+                    .attr({
+                        cx: function(d, i) {return xScale(i);},
+                        cy: function(d) {return yScale(d);},
+                        r: 5
+                    });
+        }());
+
+
+    </script>
+
+</body>
+</html>
