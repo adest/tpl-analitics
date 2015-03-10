@@ -1,0 +1,79 @@
+/* --------------------------------------------------------
+ *        COMMUN - MISE EN PAGE EN COLONNE
+ *          nombre de colonnes : 12
+ *          taille d'une ligne max : 64.0em - 1024px
+ *          taille d'une ligne min : 87.5em - 1400px
+ * ----------------------------------------------------- */
+
+
+/* CLEAR
+---------------------------------------------------------------*/
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-size: 100%;
+  text-align: center;
+}
+
+/* LIGNES ET COLONNES
+---------------------------------------------------------------*/
+
+ul li {
+  list-style-type: none;
+}
+
+
+/* LIGNES ET COLONNES
+---------------------------------------------------------------*/
+
+.row {
+  display: table;
+  width: 100%;
+  min-width: 64em;
+  max-width: 87.5em;
+  margin: 0 auto;
+}
+
+.row:before, .row:after {
+  content: " ";
+  clear: both;
+}
+
+.column {
+  width: 100%;
+  margin: 0 1%;
+  float: left;
+}
+
+.col1  { width: 6.333%; }
+.col2  { width: 14.667%; }
+.col3  { width: 23%; }
+.col4  { width: 31.333%; }
+.col5  { width: 39.667%; }
+.col6  { width: 48%; }
+.col7  { width: 55.333%; }
+.col8  { width: 64.667%; }
+.col9  { width: 73%; }
+.col10 { width: 81.333%; }
+.col11 { width: 89.667%; }
+.col12 { width: 98%; }
+
+
+
+/* UTILS
+ * ----------------------------------------------------- */
+
+.left  { float: left; }
+.right { float: right; }
+
+.hidden   { display: none !important; }
+.unactive { display: none !important; }

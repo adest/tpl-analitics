@@ -1,0 +1,500 @@
+﻿/* --------------------------------------------------------------
+    BO - LAYOUT GENERAL
+-------------------------------------------------------------- */
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Montserrat:400|Arimo:400,700|Raleway:400,500,700);
+
+/* GLOBAL
+ * ----------------------------------------------------- */
+
+html {
+  background: #fff;
+}
+
+body {
+  background: #fff;
+  margin: 0;
+  font-size: 80%;
+  overflow-x: hidden;
+}
+
+body, input, select, textarea {
+  font-family: "Source Sans Pro";
+}
+
+h1 {
+  font-family: "Source Sans Pro";
+  font-size: 20px;
+  font-weight: normal;
+  text-align: left;
+  margin: 0 1%;
+}
+
+h2 {
+  font-family: "Source Sans Pro";
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: left;
+}
+
+h4 {
+  margin-bottom: 10px;
+  font-family: "Raleway";
+  font-weight: 500;
+  font-size: 1.2em;
+}
+
+a {
+  color: #3EA6DB;
+}
+
+a.button, button {
+  display: block;
+  height: 30px;
+  margin: 3px 0;
+  background: #fff;
+  color: #32a8a9;
+  border: 2px solid #32a8a9;
+  border-radius: 2px;
+  font-family: "Source Sans Pro";
+  text-align: center;
+  text-decoration: none;
+  text-transform: lowercase;
+  padding: 5px 10px 0;
+  cursor: pointer;
+}
+
+a.button i, button i {
+  margin-right: 7px;
+}
+
+a.button.warn { border-color: #FA7456; color: #FA7456; }
+a.button.remove { border-color: #FA7456; color: #FA7456; }
+a.button.disabled { border-color: #B8B8B8; color: #B8B8B8; cursor: default; }
+
+a.button.close {
+  width: 150px;
+  margin: 10px auto 0;
+}
+
+a.button.action {
+  float: right;
+  height: auto;
+  padding: 3px 5px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.inactive,
+.inactive p, .inactive span:not(.tag), .inactive i {
+  color: #999 !important;
+}
+
+span.lastName {
+  text-transform: uppercase;
+}
+
+
+/* HEADER
+ * ----------------------------------------------------- */
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: #525D63;
+}
+
+.top-bar .logo {
+  float: left;
+  width: 230px;
+  line-height: 50px;
+  color: #fff;
+  font-size: 15px;
+  background: #3498DB;
+}
+
+.top-bar .user {
+  float: right;
+  line-height: 50px;
+  padding-right: 25px;
+  color: #fff;
+}
+
+.top-bar .user a {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.top-bar .menu {
+  float: left;
+}
+
+.top-bar .menu li {
+  padding: 12px 0;
+  background: #96AAB5;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
+}
+
+.top-bar .menu li:hover {
+  background: #3498DB;
+}
+
+.top-bar .menu li a {
+  padding: 0 20px;
+  height: 100%;
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* MENU PRINCIPAL
+--------------------------------------------------------------*/
+
+nav {
+  position: fixed;
+  top: 50px;
+  width: 230px;
+  height: 100%;
+  text-align: left;
+  background: #F8F7F5;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+nav .title {
+  display: block;
+  color: #b3a9a9;
+  border-top: 1px solid #E8E8E8;
+  padding: 15px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  margin-bottom: 10px;
+}
+
+nav ul:last-child {
+  margin-bottom: 50px;
+}
+
+nav ul li.head {
+  font-family: "Montserrat";
+  font-size: 12px;
+  color: #757E82;
+  padding: 5px 20px;
+}
+
+nav ul li i {
+  margin-right: 10px;
+  color: #3498DB;
+}
+
+nav ul li a {
+  border-left: 1px dashed #32a8a9;
+  width: 100%;
+  display: block;
+  color: #3498DB;
+  margin-left: 25px;
+  padding: 7px 20px;
+  font-family: "Source Sans Pro";
+  font-size: 12px;
+  text-decoration: none;
+}
+
+
+
+nav ul li a:hover {
+  color: #32a8a9;
+}
+
+nav ul li.current {
+  background: #b8e6da;
+}
+
+nav ul li.current a {
+  color: #1298a4;
+  font-weight: bold;
+  border-left: none;
+}
+
+
+/* SUB-MENU
+--------------------------------------------------------------*/
+
+.submenu {
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  margin: 10px 0 0 0;
+  border-width: 2px 0;
+  border-color: #f3f3f3;
+  border-style: solid;
+}
+
+.submenu ul {
+  float: left;
+  height: 100%;
+}
+
+.submenu ul li {
+  display: inline-block;
+  margin: 0 20px;
+  padding: 0 5px;
+  line-height: 45px;
+}
+
+.submenu ul li a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #49545A;
+}
+
+.submenu ul li.current {
+  color: #fa7456;
+  font-weight: 600;
+  border-bottom: 3px solid #fa7456;
+}
+
+.submenu ul li a:hover,
+.submenu ul li.current a {
+  color: #fa7456;
+}
+
+
+/* CONTENT
+--------------------------------------------------------------*/
+
+.content {
+  position: fixed;
+  left: 230px;
+  top: 50px;
+  height: 100%;
+  overflow: auto;
+}
+
+#bd {
+  position: relative;
+  overflow: auto;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.main-content {
+  margin-top: 20px;
+}
+
+.main-content .item {
+  margin: 10px 0;
+  padding-bottom: 15px;
+  border: 2px solid #E8E8E8;
+}
+
+.main-content h2 {
+  padding: 15px 10px;
+  font-family: "Raleway";
+  font-size: 19px;
+  color: #908383;
+  border-bottom: 2px dotted #eee;
+}
+
+.main-content h2 i {
+  margin-right: 10px;
+}
+
+.main-content h3 {
+  text-align: left;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #908383;
+  padding: 10px 0;
+}
+
+/* COMPOSANTS
+ * ----------------------------------------------------- */
+
+.side {
+  margin-top: 20px;
+}
+
+.tools {
+  background: #fafafa;
+  border: 1px solid #E8E8E8;
+  margin: 10px 0 20px;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.tools h3 {
+  display: block;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #908383;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.tools a.button, .tools button {
+  display: inline-block;
+  width: 80%;
+  padding: 0 2em 0 1em;
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.tools .action {
+  display: inline-block;
+  width: 100%;
+  border-top: 1px solid #eee;
+  margin: 5px 3px;
+  padding: 10px;
+}
+
+.tools .action p {
+  display: inline-block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.tools .action ul li {
+  text-align: left;
+}
+
+.tools .action.warn { border: 2px solid #FFDCD4; }
+.tools .action.warn h4 { color: #FA7456; }
+
+.item-list {
+  background: #fff;
+  padding: 0 5px;
+}
+
+.item-list li {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.item-list li p {
+  margin: 3px 0;
+  font-size: 15px;
+  font-weight: normal;
+  color: #555;
+}
+
+table {
+  width: 100%;
+  background: #fff;
+  border: none;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+table tr {
+  /*background: #f7f7F7;
+  border-bottom: 1px solid #eee;*/
+  vertical-align: top;
+}
+
+table tr:nth-of-type(even) {
+  background: #fcfcfc;
+}
+
+table tr td {
+  padding: 7px;
+}
+
+table tr td.label {
+  width: 37%;
+  color: #555;
+  font-size: 14px;
+  text-align: right;
+}
+
+table tr td.value {
+  width: 60%;
+  color: #000;
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+
+
+/* MESSAGES D'AIDE, ALERTE OU INFORMATION, ERREUR ET SUCCESS
+--------------------------------------------------------------*/
+
+span.message {
+  display: block;
+  background: #fff;
+  margin: 10px 0;
+  padding: 10px;
+  border: 2px solid transparent;
+}
+
+span.message.help { background: #c9e6f3; }
+span.message.warn { background: #FCE2DD; }
+
+#message-validation {
+  text-align: center;
+  margin: 20px 0 0;
+  padding-left: 2%;
+}
+
+#message-validation span {
+  display: inline-block;
+  width: 100%;
+  padding: 15px;
+  border: 2px solid;
+  font-size: 16px;
+  font-family: "Raleway";
+  font-weight: 500;
+  border-radius: 3px;
+}
+
+#message-validation span i {
+  float: left;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.25);
+}
+
+#message-validation a {
+  float: right;
+}
+
+#message-validation a i {
+  color: #555 !important;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.25);
+}
+
+
+#message-validation span.success { background: #ECF5C1; border-color: #8fb73a; }
+#message-validation span.error { background: #FCD2CE; border-color: #ff7a6e; }
+
+#message-validation span.success i { color: #8fb73a; }
+#message-validation span.error i { color: #ff7a6e; }
+
+
+/* FOOTER
+-------------------------------------------------------------- */
+footer {
+  width: 100%;
+  background: #fff;
+  padding-top: 40px;
+  clear: both;
+}
+
+footer span {
+  display: inline-block;
+  width: 75%;
+  padding: 10px;
+  border-top: 1px solid #E8E8E8;
+}
