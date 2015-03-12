@@ -64,21 +64,10 @@
     <script>
 
         (function(){
-
-            var lineDataset = [30, 42, 35, 40, 32, 40];
-
             var     w = 1050,
                     h = 705;
-            var padding = 1;
             var marginBottom = 150;
             var duration = 500;
-
-            var xScale = d3.scale.linear()
-                    .domain([0, lineDataset.length - 1])
-                    .range([0, w]);
-            var yScale = d3.scale.linear()
-                    .domain([0, d3.max(lineDataset)])
-                    .range([Math.floor((h - marginBottom) / 2), h - marginBottom]);
 
             var svg = d3.select('.svg-container')
                     .append('svg')
@@ -112,45 +101,116 @@
                     .attr("offset", function(d) { return d.offset; })
                     .attr("stop-color", function(d) { return d.color; });
 
-            var line = d3.svg.line()
-                    .x(function(d, i){ return xScale(i); })
-                    .y(function(d){ return yScale(d); })
-                    .interpolate("linear");
+            //-------------------------------------------
+            var rate = 3000;
+            var dataset = [0, 0, 0, 0, 0, 0];
+            init(dataset);
+            function tick() {
+                randomData();
+                render(dataset);
+                setTimeout(tick, rate);
+            }
+            setTimeout(tick, 100);
 
-            svg.append('path')
-                    .attr('fill', 'none')
-                    .attr('stroke', 'rgb(0, 0, 150)')
-                    .attr('stroke-width',  '3')
-                    .attr('stroke-antialiasing', 'true')
-                    .transition()
-                    .duration(duration)
-                        .attr('d', line(lineDataset));
+            //-------------------------------------------
 
-            svg.append('path')
-                    .attr('fill', 'url(#line-gradient)')
-                    .transition()
-                    .duration(duration)
+            function randomData() {
+                var dataLength = dataset.length;
+                dataset = [];
+                for (var i = 0; i < dataLength; i++) {
+                    dataset.push(Math.floor(Math.random() * 45));
+                }
+            }
+
+            function init() {
+                var dataset = [0, 0, 0, 0, 0, 0];
+                var xScale = d3.scale.linear()
+                        .domain([0, dataset.length - 1])
+                        .range([0, w]);
+                var yScale = d3.scale.linear()
+                        .domain([0, d3.max(dataset)])
+                        .range([Math.floor((h - marginBottom) / 2), h - marginBottom]);
+
+                var line = d3.svg.line()
+                        .x(function(d, i){ return xScale(i); })
+                        .y(function(d){ return yScale(d); })
+                        .interpolate("linear");
+
+                svg.append('path')
+                        .attr('class', 'line')
+                        .attr('fill', 'none')
+                        .attr('stroke', 'rgb(0, 0, 150)')
+                        .attr('stroke-width',  '3')
+                        .attr('stroke-antialiasing', 'true')
+                        .transition()
+                        .duration(duration)
+                        .attr('d', line(dataset));
+
+                svg.append('path')
+                        .attr('class', 'gradient')
+                        .attr('fill', 'url(#line-gradient)')
+                        .transition()
+                        .duration(duration)
                         .attr('d', function() {
-                            var path = line(lineDataset);
+                            var path = line(dataset);
                             path += 'L' + w + ',' + h;
                             path += 'L0,' + h + 'Z';
                             return path;
                         });
 
-            svg.selectAll('circle')
-                    .data(lineDataset)
-                    .enter()
-                    .append('circle')
-                    .attr('fill', 'white')
-                    .attr('stroke', 'rgb(0, 0, 150)')
-                    .attr('stroke-width', '2')
-                    .transition()
-                    .duration(duration)
-                    .attr({
-                        cx: function(d, i) {return xScale(i);},
-                        cy: function(d) {return yScale(d);},
-                        r: 5
-                    });
+                svg.selectAll('circle')
+                        .data(dataset)
+                        .enter()
+                        .append('circle')
+                        .attr('fill', 'white')
+                        .attr('stroke', 'rgb(0, 0, 150)')
+                        .attr('stroke-width', '2')
+                        .transition()
+                        .duration(duration)
+                        .attr({
+                            cx: function(d, i) {return xScale(i);},
+                            cy: function(d) {return yScale(d);},
+                            r: 5
+                        });
+            }
+            function render(dataset) {
+                var xScale = d3.scale.linear()
+                        .domain([0, dataset.length - 1])
+                        .range([0, w]);
+                var yScale = d3.scale.linear()
+                        .domain([0, d3.max(dataset)])
+                        .range([Math.floor((h - marginBottom) / 2), h - marginBottom]);
+
+                var line = d3.svg.line()
+                        .x(function(d, i){ return xScale(i); })
+                        .y(function(d){ return yScale(d); })
+                        .interpolate("linear");
+
+                svg.selectAll('path.line')
+                        .transition()
+                        .duration(duration)
+                        .attr('d', line(dataset));
+
+                svg.selectAll('path.gradient')
+                        .transition()
+                        .duration(duration)
+                        .attr('d', function() {
+                            var path = line(dataset);
+                            path += 'L' + w + ',' + h;
+                            path += 'L0,' + h + 'Z';
+                            return path;
+                        });
+
+                svg.selectAll('circle')
+                        .data(dataset)
+                        .transition()
+                        .duration(duration)
+                        .attr({
+                            cx: function(d, i) {return xScale(i);},
+                            cy: function(d) {return yScale(d);},
+                            r: 5
+                        });
+            }
         }());
 
 
